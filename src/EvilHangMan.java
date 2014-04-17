@@ -3,13 +3,8 @@ import java.io.*;
 
 
 public class EvilHangMan extends HangManSuper {
-	//private String originalSecretWord = "";// To store the secret word
-	//private int guessesRemaining;// to store the number of guess for the user
-	//private String currentState = "";// store the current guessing situation
-	//private String letterGuessHistory = "";// store the letters user has tried
-	//private char letterGuess;// the letter the user guess right now
-	private String[] wordlist = new String[235000];// to store the dictionary
-	private int numWords = 0;// count the number of possible secret words.
+
+	private ArrayList<String> wordlist = new ArrayList<String>();
 	private int secretStringLength;// the length of the secret string
 	private boolean guessResult = false;
 
@@ -22,32 +17,20 @@ public class EvilHangMan extends HangManSuper {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		int i = 0;
 		while (scanner.hasNext()) {
 			String temp = scanner.nextLine().toUpperCase();
 			if (temp.length() == StringLength) {
-				wordlist[i] = temp;
-				i++;
-				numWords++;
+				wordlist.add(temp);
 			}
 		}
 
-		for (i = 0; i < StringLength; i++) {
+		for (int i = 0; i < StringLength; i++) {
 			currentState += "_ ";
 		}
 		scanner.close();
 
 	}
-	/*
-	public String getSecretWord() {
-		return originalSecretWord;
-	}
-	*/
-	/*
-	public int numGuessesRemaining() {
-		return guessesRemaining;
-	}
-	*/
+
 	public int numLettersRemaining() {
 		return 26; // because they never get one right!
 	}
@@ -62,75 +45,41 @@ public class EvilHangMan extends HangManSuper {
 		else
 			return false;
 	}
-	/*
-	public String lettersGuessed() {
-		return letterGuessHistory;
-	}
-	*/
-	/*
-	public String displayGameState() {
-		return currentState;
-	}
-	*/
-	public boolean makeGuess(char ch) {
 
-		System.out.println("makeGuess: " + ch + "; numWords=" + numWords);
+	public boolean makeGuess(char ch) {
+		//System.out.println("makeGuess: " + ch + "; numWords=" + wordlist.size());
 		guessResult = false;
 		letterGuess = ch;
 		if (Character.isLetter(ch) && !isRepeatInput(ch)) {
 			// adjust the Wordlist in order to avoid the word with the letter
 			// user guessed
-			int tempWordNum = 0;
-			for (int i = 0; i < numWords; i++) {
+			String firstWord = wordlist.get(0);
+			for (int i = 0; i < wordlist.size(); i++) {
 				for (int j = 0; j < secretStringLength; j++) {
-					if (wordlist[i].charAt(j) == ch) {
+					if (wordlist.get(i).charAt(j) == ch) {
+						wordlist.remove(wordlist.get(i));
+						i--;
 						break;
-					} else {
-						if (j == secretStringLength - 1) {
-							if (wordlist[i].charAt(j) != ch) {
-								tempWordNum++;
-							}
-						}
 					}
 				}
 			}
-			// we choose the words that don't contain the letter the user
-			// guessed, and they will be the new possible secret words.
-			String[] temp = new String[tempWordNum];
-			int tempIndex = 0;
-			for (int i = 0; i < numWords; i++) {
-				for (int j = 0; j < secretStringLength; j++) {
-					if (wordlist[i].charAt(j) == ch) {
-						break;
-					} else {
-						if (j == secretStringLength - 1) {
-							if (wordlist[i].charAt(j) != ch) {
-								temp[tempIndex] = wordlist[i];
-								tempIndex++;
-							}
-						}
-					}
-				}
-			}
-			if (tempWordNum == 0) {
-				System.out.println("tempWordNum is zero!");
-
-				originalSecretWord = wordlist[0];
+			if (wordlist.size() == 0) {
+				//System.out.println("tempWordNum is zero!");
+				originalSecretWord = firstWord;
+				wordlist.add(firstWord);
 				guessResult = true;
 			} else {
-				originalSecretWord = temp[0];
-				numWords = tempWordNum;
-				wordlist = temp;
+				originalSecretWord = wordlist.get(0);
 				guessesRemaining--;
 				guessResult = false;
 			}
 			if (!guessResult) {
 				letterGuessHistory = letterGuessHistory + letterGuess;
-			}
-
-		} else return false;
-		
-		return guessResult;
+			}	
+		} else {
+			return false;
+		}
+		return guessResult;	
 	}
 
     public boolean isRepeatInput(char c)

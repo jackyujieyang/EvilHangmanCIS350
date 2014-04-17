@@ -7,7 +7,6 @@ public class HangManSuper implements HangmanGame{
 	protected String letterGuessHistory = "";// store the letters user has tried
 	protected char letterGuess;// the letter the user guess right now
 	
-	
 	@Override
 	public String getSecretWord() {
 		return originalSecretWord;
@@ -15,19 +14,16 @@ public class HangManSuper implements HangmanGame{
 
 	@Override
 	public boolean makeGuess(char ch) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean isWin() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean gameOver() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -38,7 +34,6 @@ public class HangManSuper implements HangmanGame{
 
 	@Override
 	public int numLettersRemaining() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

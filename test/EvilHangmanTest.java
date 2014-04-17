@@ -83,7 +83,6 @@ public class EvilHangmanTest {
 		assertEquals("CEDERS", hm.getSecretWord()); // don't ask how I know that
 	}
 
-	
 	@Test
 	public void testWin() {
 		// correctly guess the word and see if the game ends
@@ -116,7 +115,7 @@ public class EvilHangmanTest {
 		//assertTrue(hm.gameOver());
 		//assertTrue(hm.isWin());
 	}
-
+	
 	@Test
 	public void testLoss() {
 		// use up all guesses and see if game ends
@@ -132,4 +131,5 @@ public class EvilHangmanTest {
 		assertTrue(hm.gameOver());
 		assertFalse(hm.isWin());
 	}
+	
 }

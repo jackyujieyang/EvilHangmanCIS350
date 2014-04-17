@@ -9,12 +9,8 @@
  */
 import java.util.*;
 public class NormalHangMan extends HangManSuper {
-	//private String originalSecretWord = "";//To store the secret word
-    //private int guessesRemaining;//to store the number of guess for the user
+
     private int numLettersLeft;//to store the number of the letters in the secret word has not been guessed correctly
-    //private String currentState = "";//store the current guessing situation
-    //private String letterGuessHistory = "";//store the letter user has tried
-    //private char letterGuess;//the letter the user guess right now
 
     /**
      * Constructor sets up the game to be played with a word and some number of
@@ -44,18 +40,7 @@ public class NormalHangMan extends HangManSuper {
         }
         letterGuessHistory = LetterHistory;
     }   
-    /*
-    public String getSecretWord()
-    {
-        return originalSecretWord;
-    }
-    */
-    /*
-    public int numGuessesRemaining()
-    {
-        return guessesRemaining;
-    }
-    */
+
     public int numLettersRemaining()
     {
         return numLettersLeft;
@@ -74,18 +59,7 @@ public class NormalHangMan extends HangManSuper {
         else
             return false;
     }
-    /*
-    public String lettersGuessed()
-    {
-        return letterGuessHistory;
-    }
-    */
-    /*
-    public String displayGameState()
-    {
-        return currentState;
-    }
-    */
+
     public boolean updateState(char ch) {
     	for (int i = 0; i < originalSecretWord.length(); i++) {
     		if (originalSecretWord.charAt(i) == ch) {
@@ -107,36 +81,9 @@ public class NormalHangMan extends HangManSuper {
     public boolean makeGuess(char ch)
     {
     	if (Character.isLetter(ch) == false) return false;
-        //boolean tempB = true;
         letterGuess = ch;
         boolean isGuessCorrect = updateState(ch);
-        /*
-        for (int i = 0; i < originSecretWord.length(); i++)
-        {
-            if (originSecretWord.charAt(i) == ch)//if the user guess right, adjust the current state.
-            {
-                String temp = "";
-                for (int j = 0; j < originSecretWord.length(); j++)
-                {
-                    if (originSecretWord.charAt(j) == ch)
-                    {
-                        temp = temp + ch + " ";
-                    }
-                    else
-                    {
-                        temp = temp + currentState.charAt(2*j) + currentState.charAt(2*j+1);              
-                    }
-                }
-                currentState = temp;
-                tempB = true;
-                break;
-            }
-            else
-            {
-                tempB = false;
-            }
-        }
-        */
+
         if (!alreadyGuessed(ch))
         {
             letterGuessHistory = letterGuessHistory + letterGuess;
@@ -162,7 +109,6 @@ public class NormalHangMan extends HangManSuper {
     	return false;
     }
     
-   
 }
     
        
