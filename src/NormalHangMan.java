@@ -8,16 +8,13 @@
  * <p>This class can then be used by a user interface to administer a regular game of Hangman.</p>
  */
 import java.util.*;
-public class NormalHangMan implements HangmanGame
-{
-    
-
-	private String originSecretWord = "";//To store the secret word
-    private int guessesRemaining;//to store the number of guess for the user
+public class NormalHangMan extends HangManSuper {
+	//private String originalSecretWord = "";//To store the secret word
+    //private int guessesRemaining;//to store the number of guess for the user
     private int numLettersLeft;//to store the number of the letters in the secret word has not been guessed correctly
-    private String currentState = "";//store the current guessing situation
-    private String history = "";//store the letter user has tried
-    private char guess;//the letter the user guess right now
+    //private String currentState = "";//store the current guessing situation
+    //private String letterGuessHistory = "";//store the letter user has tried
+    //private char letterGuess;//the letter the user guess right now
 
     /**
      * Constructor sets up the game to be played with a word and some number of
@@ -30,7 +27,7 @@ public class NormalHangMan implements HangmanGame
      * @param numGuesses the number of guesses allowed
      */
     public NormalHangMan(String secretWord, int numGuesses, String LetterHistory){
-        originSecretWord = secretWord;
+        originalSecretWord = secretWord;
         guessesRemaining = numGuesses;
         numLettersLeft = secretWord.length();
         for(int i = 0; i < secretWord.length(); i++)
@@ -45,17 +42,20 @@ public class NormalHangMan implements HangmanGame
                 }
             }
         }
-        history = LetterHistory;
+        letterGuessHistory = LetterHistory;
     }   
-
+    /*
     public String getSecretWord()
     {
-        return originSecretWord;
+        return originalSecretWord;
     }
+    */
+    /*
     public int numGuessesRemaining()
     {
         return guessesRemaining;
     }
+    */
     public int numLettersRemaining()
     {
         return numLettersLeft;
@@ -74,21 +74,24 @@ public class NormalHangMan implements HangmanGame
         else
             return false;
     }
+    /*
     public String lettersGuessed()
     {
-        return history;
+        return letterGuessHistory;
     }
+    */
+    /*
     public String displayGameState()
     {
         return currentState;
     }
-    
+    */
     public boolean updateState(char ch) {
-    	for (int i = 0; i < originSecretWord.length(); i++) {
-    		if (originSecretWord.charAt(i) == ch) {
+    	for (int i = 0; i < originalSecretWord.length(); i++) {
+    		if (originalSecretWord.charAt(i) == ch) {
     			String temp = "";
-    			for (int j = 0; j < originSecretWord.length(); j++) {
-    				if (originSecretWord.charAt(j) == ch) {
+    			for (int j = 0; j < originalSecretWord.length(); j++) {
+    				if (originalSecretWord.charAt(j) == ch) {
     					temp = temp + ch + " ";
     				} else {
     					temp = temp + currentState.charAt(2*j) + currentState.charAt(2*j+1); 
@@ -105,7 +108,7 @@ public class NormalHangMan implements HangmanGame
     {
     	if (Character.isLetter(ch) == false) return false;
         //boolean tempB = true;
-        guess = ch;
+        letterGuess = ch;
         boolean isGuessCorrect = updateState(ch);
         /*
         for (int i = 0; i < originSecretWord.length(); i++)
@@ -136,7 +139,7 @@ public class NormalHangMan implements HangmanGame
         */
         if (!alreadyGuessed(ch))
         {
-            history = history + guess;
+            letterGuessHistory = letterGuessHistory + letterGuess;
 
             if (isGuessCorrect)
             {
@@ -153,8 +156,8 @@ public class NormalHangMan implements HangmanGame
     
     public boolean alreadyGuessed(char c)
     {
-    	for (int i = 0; i < history.length(); i++) {
-    		if (history.charAt(i) == c) return true;
+    	for (int i = 0; i < letterGuessHistory.length(); i++) {
+    		if (letterGuessHistory.charAt(i) == c) return true;
     	}
     	return false;
     }
