@@ -16,6 +16,26 @@ public class NormalHangmanTest {
 	}
 	
 	@Test
+	public void testCorrectUpdateState() {
+		assertTrue(hm.updateState('S'));
+		assertTrue(hm.updateState('P'));
+		assertTrue(hm.updateState('O'));
+		assertTrue(hm.updateState('N'));
+		assertTrue(hm.updateState('G'));
+		assertTrue(hm.updateState('B'));
+	}
+	
+	@Test
+	public void testIncorrectUpdateState() {
+		assertFalse(hm.updateState('A'));
+		assertFalse(hm.updateState('C'));
+		assertFalse(hm.updateState('D'));
+		assertFalse(hm.updateState('F'));
+		assertFalse(hm.updateState('H'));
+		assertFalse(hm.updateState('I'));
+	}
+	
+	@Test
 	public void testInitialValues() {
 		// call the constructor and see that the initial values are correct
 		assertEquals(WORD, hm.getSecretWord());
