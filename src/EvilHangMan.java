@@ -66,7 +66,7 @@ public class EvilHangMan extends HangManSuper {
 			if (wordlist.size() == 0) {
 				//System.out.println("tempWordNum is zero!");
 				originalSecretWord = firstWord;
-				wordlist.add(firstWord);
+				wordlist.add(originalSecretWord);
 				guessResult = true;
 			} else {
 				originalSecretWord = wordlist.get(0);

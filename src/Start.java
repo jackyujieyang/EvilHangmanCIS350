@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 
 public class Start extends JPanel implements ActionListener {
     static JFrame frame;
-    String numLetters, numGuesses;
+    int numLetters, numGuesses;
     private JComboBox patternList, patternList1;
  
     public Start() {
@@ -23,7 +23,7 @@ public class Start extends JPanel implements ActionListener {
                  "9",
                  "10",
                  };
-        numLetters = numLettersOptions[0];
+        numLetters = Integer.parseInt(numLettersOptions[0]);
  
         String[] numGuessesOptions = {
                 "4",
@@ -40,7 +40,7 @@ public class Start extends JPanel implements ActionListener {
                 "15",
                 "16",
                 };
-        numGuesses = numGuessesOptions[0];
+        numGuesses = Integer.parseInt(numGuessesOptions[0]);
 
         JLabel patternLabel1 = new JLabel("Select the number of letters");
         JLabel patternLabel2 = new JLabel("that will be in the word:");
@@ -87,14 +87,13 @@ public class Start extends JPanel implements ActionListener {
     } 
  
     public void actionPerformed(ActionEvent e) {
-    	numLetters = (String)(patternList.getSelectedItem());
-    	numGuesses = (String)(patternList1.getSelectedItem());
+    	numLetters = Integer.parseInt((String)(patternList.getSelectedItem()));
+    	numGuesses = Integer.parseInt((String)(patternList1.getSelectedItem()));
     	frame.dispose();
-    	new GUI_PlayGame(Integer.parseInt(numLetters), Integer.parseInt(numGuesses)).show();
+    	new GUI_PlayGame(numLetters, numGuesses).show();
 
     }
 
- 
     /**
      * Create the GUI and show it.  For thread safety,
      * this method should be invoked from the
