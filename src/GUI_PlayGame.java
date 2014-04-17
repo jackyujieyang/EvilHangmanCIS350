@@ -118,6 +118,17 @@ public class GUI_PlayGame implements ActionListener
 
         label2.setText("Secret Word: "+game.displayGameState());
         label3.setText(String.valueOf("Guesses Remaining: "+ game.numGuessesRemaining()));
+        
+        if (game.gameOver()) {
+        	if (game.isWin()) {
+        		new GUI_Result(game.displayGameState(), frame, true);
+        	} else {
+        		new GUI_Result(game.getSecretWord(), frame, false);
+        	}
+        }
+        
+        
+        /*
         if (game.gameOver())
         {
             if (game.isWin())
@@ -129,6 +140,8 @@ public class GUI_PlayGame implements ActionListener
                 new GUI_Loser(game.getSecretWord(),frame);
             }
         }
+        */
+        
     }
 
     public boolean check(char input)

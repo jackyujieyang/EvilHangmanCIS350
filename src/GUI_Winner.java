@@ -7,8 +7,8 @@ import javax.sound.sampled.*;
 public class GUI_Winner implements ActionListener
 {
     private JFrame parentFrame;
-    private JFrame congratulationsFrame;
-    private JLabel answerLabel;
+    private JFrame resultFrame;
+    //private JLabel answerLabel;
     private JLabel secretWordLabel;
     private JLabel gameResultLabel;
     private JButton returnBtn;
@@ -17,53 +17,53 @@ public class GUI_Winner implements ActionListener
     
     public GUI_Winner(String Letters,JFrame frame)
     {
-        parentFrame = frame;
-        congratulationsFrame = new JFrame("You are the winner!!!");
-        bg(congratulationsFrame);
-        answerLabel = new JLabel("The answer is ");
+        parentFrame = frame; //
+        resultFrame = new JFrame("You are the winner!!!"); //
+        bg(resultFrame);
+        //answerLabel = new JLabel("The answer is ");
         
-        secretWordLabel = new JLabel(Letters);
-        secretWordLabel.setFont(new Font("Default",Font.PLAIN,23));
-        secretWordLabel.setForeground(Color.red);
-        gameResultLabel = new JLabel("You are winner!");
-        returnBtn = new JButton("Return to the main menu");
+        secretWordLabel = new JLabel("The answer is " + Letters + "."); //
+        secretWordLabel.setFont(new Font("Default",Font.PLAIN,23)); //
+        secretWordLabel.setForeground(Color.red); //
+        gameResultLabel = new JLabel("You are winner!"); //
+        returnBtn = new JButton("Return to the main menu"); //
 
-        returnBtn.addActionListener(this); 
+        returnBtn.addActionListener(this); //
         
-        congratulationsFrame.add(answerLabel);
-        congratulationsFrame.add(secretWordLabel);
-        congratulationsFrame.add(gameResultLabel);
-        congratulationsFrame.add(returnBtn);
+        //winnerFrame.add(answerLabel);
+        resultFrame.add(secretWordLabel); //
+        resultFrame.add(gameResultLabel); //
+        resultFrame.add(returnBtn); //
 
-        congratulationsFrame.setVisible(true);
+        resultFrame.setVisible(true); //
 
     }
 
     public void bg(JFrame frame)
     {
-        background = new ImageIcon("Congrats.gif");
-        JLabel label = new JLabel(background);
+        background = new ImageIcon("Congrats.gif"); //
+        JLabel label = new JLabel(background); //
      
         label.setBounds(0, 0, background.getIconWidth(),
-            background.getIconHeight());
+            background.getIconHeight()); //
    
-        imagePanel = (JPanel) frame.getContentPane();
-        imagePanel.setOpaque(false);
+        imagePanel = (JPanel) frame.getContentPane(); //
+        imagePanel.setOpaque(false); //
 
-        imagePanel.setLayout(new FlowLayout());
+        imagePanel.setLayout(new FlowLayout()); //
 
-        frame.getLayeredPane().setLayout(null);
+        frame.getLayeredPane().setLayout(null); //
 
-        frame.getLayeredPane().add(label, new Integer(Integer.MIN_VALUE));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(background.getIconWidth(), background.getIconHeight());
-        frame.setResizable(false);
+        frame.getLayeredPane().add(label, new Integer(Integer.MIN_VALUE)); //
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //
+        frame.setSize(background.getIconWidth(), background.getIconHeight()); //
+        frame.setResizable(false); //
 
     }
 
     public void actionPerformed(ActionEvent e)
     {
-        congratulationsFrame.dispose();
+        resultFrame.dispose();
         parentFrame.dispose();
     	new Start().createAndShowGUI();
     }
