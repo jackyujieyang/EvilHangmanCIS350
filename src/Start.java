@@ -23,7 +23,6 @@ public class Start extends JPanel implements ActionListener {
                  "9",
                  "10",
                  };
-        numLetters = Integer.parseInt(numLettersOptions[0]);
  
         String[] numGuessesOptions = {
                 "4",
@@ -40,7 +39,6 @@ public class Start extends JPanel implements ActionListener {
                 "15",
                 "16",
                 };
-        numGuesses = Integer.parseInt(numGuessesOptions[0]);
 
         JLabel patternLabel1 = new JLabel("Select the number of letters");
         JLabel patternLabel2 = new JLabel("that will be in the word:");

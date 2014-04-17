@@ -120,28 +120,15 @@ public class GUI_PlayGame implements ActionListener
         label3.setText(String.valueOf("Guesses Remaining: "+ game.numGuessesRemaining()));
         
         if (game.gameOver()) {
+        	new GUI_Result(game.getSecretWord(), frame, game.isWin());
+        	/*
         	if (game.isWin()) {
         		new GUI_Result(game.displayGameState(), frame, true);
         	} else {
         		new GUI_Result(game.getSecretWord(), frame, false);
         	}
-        }
-        
-        
-        /*
-        if (game.gameOver())
-        {
-            if (game.isWin())
-            {
-                new GUI_Winner(game.displayGameState(),frame);
-            }
-            else
-            {
-                new GUI_Loser(game.getSecretWord(),frame);
-            }
-        }
-        */
-        
+        	*/
+        }        
     }
 
     public boolean check(char input)
